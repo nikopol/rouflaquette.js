@@ -16,7 +16,8 @@ rfq("{{txt|mark:42}}",{txt:"the answer is 42"});          //-> "the answer is <m
 var data = {authors:[{name:"asimov"},{name:"dick"},{name:"herbert"}]};
 rfq.template({
   'author-line': '<li>{{name}}</li>',
-  'authors-list': '<h2>{{authors.length|plural:no author:one author:{} authors}}</h2><ul>{{authors|tpl:author-line}}</ul>'
+  'authors-list': '<h2>{{authors.length|plural:no author:one author:{} authors}}</h2>'+
+                  '<ul>{{authors|tpl:author-line}}</ul>'
 })('authors-list',data);
 // -> "<h2>3 authors</h2><ul><li>asimov</li><li>dick</li><li>herbert</li></ul>"
 ```
@@ -139,7 +140,7 @@ rouflaquette = (function(){
     },
     plural: function(s, none, single, multi){
       var v = !s ? 0 : 0+s;
-      return (s<=0 ? none : s>1 ? multi : single).replace('{}',s);
+      return ((v<=0 ? none : v>1 ? multi : single) || '').toString().replace('{}', v);
     },
     replace: function(s, what, by){
       return str.replace(what,by);
