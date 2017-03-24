@@ -15,7 +15,7 @@ rfq("{{txt|mark:42}}",{txt:"the answer is 42"});          //-> "the answer is <m
 var data = {authors:[{name:"asimov"},{name:"dick"},{name:"herbert"}]};
 rfq.template({
   'author-line': '<li>{{name}}</li>',
-  'authors-list': '<h2>{{authors.length|plural:no author:one author:$count authors}}</h2><ul>{{authors|tpl:author-line}}</ul>'
+  'authors-list': '<h2>{{authors.length|plural:no author:one author:{} authors}}</h2><ul>{{authors|tpl:author-line}}</ul>'
 })('authors-list',data);
 // -> "<h2>3 authors</h2><ul><li>asimov</li><li>dick</li><li>herbert</li></ul>"
 ```
@@ -46,22 +46,22 @@ it returns `rfq`
 
 ### Filters
 
-| filters                  | purposes                                                                                                                                                                |
-|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| floor                    | convert to number rounded lower                                                                                                                                         |
-| round                    | convert to number rounded upper                                                                                                                                         |
-| capital                  | uppercase first letter of each words                                                                                                                                    |
-| lowercase                | lowercase the whole string                                                                                                                                              |
-| uppercase                | send a nuclear duck into space                                                                                                                                          |
-| subs:from:to             | extract a substring begging at `from` and ending at `to`                                                                                                                |
-| replace:what:by          | replace `what` by `by`                                                                                                                                                  |
-| trim                     | remove beginning and ending spaces                                                                                                                                      |
-| join:separator           | join values using separator                                                                                                                                             |
-| mark:what                | replace `what` by `<mark>what</mark>`                                                                                                                                   |
-| plural:none:single:multi | apply none, single or multi template depending on the value. you can use {} to represents the value eg: `{{authors.length|plural:no author:one author:$count authors}}` |
-| or:default               | apply `default` if false                                                                                                                                                |
-| if:then:else             | apply `then` if true else `else`                                                                                                                                        |
-| tpl:tplname              | apply a registred template                                                                                                                                              |
+| filters                  | purposes                                                    |
+|--------------------------|-------------------------------------------------------------|
+| floor                    | convert to number rounded lower                             |
+| round                    | convert to number rounded upper                             |
+| capital                  | uppercase first letter of each words                        |
+| lowercase                | lowercase the whole string                                  |
+| uppercase                | send a nuclear duck into space                              |
+| subs:from:to             | extract a substring begging at `from` and ending at `to`    |
+| replace:what:by          | replace `what` by `by`                                      |
+| trim                     | remove beginning and ending spaces                          |
+| join:separator           | join values using separator                                 |
+| mark:what                | replace `what` by `<mark>what</mark>`                       |
+| plural:none:single:multi | apply none, single or multi template depending on the value |
+| or:default               | apply `default` if false                                    |
+| if:then:else             | apply `then` if true else `else`                            |
+| tpl:tplname              | apply a registred template                                  |
 
 you can add your own filter like that :
 ```js
